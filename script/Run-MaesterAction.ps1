@@ -161,8 +161,10 @@ PROCESS {
         Install-Module ExchangeOnlineManagement -Scope CurrentUser -Force
         Import-Module ExchangeOnlineManagement
 
-        $complianceToken = Get-MtAccessTokenUsingCli -ResourceUrl 'https://outlook.office365.com'
-        Connect-IPPSSession -AccessToken $complianceToken -AppId $ClientId -Organization $TenantId -ShowBanner:$false
+        # As per M365 CoPilot it might be enough to use azure/login(@v2)
+        # it should create $env:AZURE_FEDERATED_TOKEN_FILE
+        # which should leave us with a token that can be reused for us.
+        Connect-IPPSSession -AppId $ClientId -Organization $TenantId -ShowBanner:$false
         Write-Host "✔️ Security & Compliance connected."
     } else {
         Write-Host '📃 Security & Compliance tests will be skipped.'
