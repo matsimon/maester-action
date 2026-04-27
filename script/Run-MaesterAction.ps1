@@ -161,7 +161,7 @@ PROCESS {
         Install-Module ExchangeOnlineManagement -Scope CurrentUser -Force
         Import-Module ExchangeOnlineManagement
 
-        #$outlookToken = Get-MtAccessTokenUsingCli -ResourceUrl 'https://outlook.office365.com'
+        $outlookToken = Get-MtAccessTokenUsingCli -ResourceUrl 'https://outlook.office365.com'
         Connect-IPPSSession -AccessToken $outlookToken -AppId $ClientId -Organization $TenantId -ShowBanner:$false
         Write-Host "✔️ Security & Compliance connected."
     } else {
