@@ -22,6 +22,10 @@ inputs:
     description: "Include Exchange Online tests in the test run."
     required: false
     default: "false"
+  include_securitycompliance:
+    description: "Include Security & Compliance tests in the test run."
+    required: false
+    default: "false"
   include_teams:
     description: "Include Teams tests in the test run."
     required: false
