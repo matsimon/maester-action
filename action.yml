@@ -160,6 +160,7 @@ runs:
           -MaesterVersion '${{ inputs.maester_version }}' `
           -IncludePublicTests('${{ inputs.include_public_tests }}' -eq 'true') `
           -IncludeExchange ('${{ inputs.include_exchange }}' -eq 'true') `
+          -IncludeSecurityCompliance ('${{ inputs.include_securitycompliance }}' -eq 'true') `
           -IncludeTeams ('${{ inputs.include_teams }}' -eq 'true') `
           -IncludeLongRunning ('${{ inputs.include_longrunning_tests }}' -eq 'true') `
           -IncludePreview ('${{ inputs.include_preview_tests }}' -eq 'true') `
