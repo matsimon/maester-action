@@ -33,6 +33,9 @@
     [Parameter(Mandatory = $false, HelpMessage = 'Include Exchange Online tests')]
     [bool]$IncludeExchange = $true,
 
+    [Parameter(Mandatory = $false, HelpMessage = 'Include Security & Compliance tests')]
+    [bool]$IncludeSecurityCompliance = $true,
+
     [Parameter(Mandatory = $false, HelpMessage = 'Include Teams tests')]
     [bool]$IncludeTeams = $true,
 
@@ -152,6 +155,17 @@ PROCESS {
         Write-Host "✔️ Exchange Online connected."
     } else {
         Write-Host '📃 Exchange Online tests will be skipped.'
+    }
+    # Check if we need to connect to Security & Compliance
+    if ($IncludeSecurityCompliance) {
+        Install-Module ExchangeOnlineManagement -Scope CurrentUser -Force
+        Import-Module ExchangeOnlineManagement
+
+        #$outlookToken = Get-MtAccessTokenUsingCli -ResourceUrl 'https://outlook.office365.com'
+        Connect-IPPSSession -AccessToken $outlookToken -AppId $ClientId -Organization $TenantId -ShowBanner:$false
+        Write-Host "✔️ Security & Compliance connected."
+    } else {
+        Write-Host '📃 Security & Compliance tests will be skipped.'
     }
 
     # Check if we need to connect to Teams
